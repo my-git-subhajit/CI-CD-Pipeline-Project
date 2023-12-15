@@ -32,7 +32,7 @@ Task 1:  Simple HTML File index.html
 </body>
 </html>
 
-Write a Python script to connect with GitHub API and track the new changes committed to GitHub.
+Task 2: Write a Python script to connect with GitHub API and track the new changes committed to GitHub.
 It includes code changes in HTML file and push the new code or updated HTML file to GitHub. 
 !! Make sure your GitHub repository is public !!
 
@@ -71,3 +71,40 @@ def main():
 
 if __name__ == "__main__":
     main()
+Task 3: Create an AMAZON EC2 Instance linux machine and install nginx web server on that machine.
+
+Task 4 – Write a bash script to deploy latest code  and new commits on GitHub.
+ deploy.sh script will be run on EC2 Linux instance and deploy new commits or code changes in index.html file on github.
+How it works?
+It will pull the latest commits changes from GitHub, deploy those new changes on EC2 Instance Nginx server and restart nginx server on that EC2 instance.
+Linux Command:  sudo systemctl restart nginx
+
+#!/bin/bash
+PROJECT_DIR="CI-CD-Pipeline-Project"
+cd  "$PROJECT_DIR"
+# clone the new commit to that directory 
+git pull origin main
+cd 
+
+sudo cp CI-CD-Pipeline-Project/* /var/www/html
+
+sudo systemctl restart nginx
+
+echo "Deployment successfully completed."
+
+Running deploy.sh script on EC2 Nginx Server.
+./deploy.sh or bash deploy.sh
+
+Task 5 – Set up a Cron Job to run the Python script  at regular intervals on the EC2 instance nginx server.
+
+Created script.sh file in order to configure with cron job and run that script  by command 
+bash script.sh
+•	Ensure you  are running command as sudo su (super user)
+
+#!/bin/bash
+
+cd CI-CD-Pipeline-Project
+
+python3 CheckCommitsGit.py
+
+
